@@ -1,3 +1,3 @@
 # Spotify-Redesign
 Spotify Redesign using flutter
-wil start soon
+will start soon
