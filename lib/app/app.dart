@@ -8,6 +8,17 @@ class SpaceX extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system,
+      theme: ThemeData.light(
+        useMaterial3: true
+       ).copywith(
+       fontFamily: 'One Ui Sans'
+      ),
+      darkTheme: ThemeData.dark(
+        useMaterial3: true
+      ).copywith(
+       fontFamily: 'One Ui Sans'
+      ),
       home: HomeScreen(),
     );
   }
