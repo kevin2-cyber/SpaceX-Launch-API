@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:spacex_api/app.dart';
+import 'package:spacex_api/app/app.dart';
 
 Future<void> main() async {
 
