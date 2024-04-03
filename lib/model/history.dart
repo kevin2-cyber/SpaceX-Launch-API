@@ -4,9 +4,23 @@ class History {
   String details;
   DateTime eventDateUtc;
 
-  History(this.id, this.title, this.details, this.eventDateUtc);
+  History({required this.id, required this.title, required this.details, required this.eventDateUtc});
 
-  // factory History.fromJson(Map<String, dynamic> json) {
-  //   return History(0, '', '', DateTime.now());
-  // }
+  History copyWith({required String title, required String details, required DateTime eventDateUtc}) {
+    return History(
+        id: id,
+        title: title,
+        details: details,
+        eventDateUtc: eventDateUtc
+    );
+  }
+
+  factory History.fromJson(Map<String, dynamic> json) {
+    return History(
+      id: json['id'],
+      title: json['title'],
+      details: json['details'],
+      eventDateUtc: json['event_date_utc']
+    );
+  }
 }

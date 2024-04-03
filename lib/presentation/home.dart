@@ -22,12 +22,21 @@ class _HomeScreenState extends State<HomeScreen> {
               MaterialButton(
                 onPressed: () {
                   showModalBottomSheet(
+                    showDragHandle: true,
+                      backgroundColor: Colors.grey,
                       context: context,
                       builder: (context) {
                         return ClipRRect(
                           borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                          child: Container(
-                            color: Colors.yellowAccent,
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            child: Center(
+                              child: Text(
+                                  'Welcome to history',
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                            ),
                           ),
                         );
                       }
