@@ -28,36 +28,18 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: Center(
-          child: _isLoading ?
-          const CircularProgressIndicator()
-              :  Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView.builder(
-              itemCount: mockHistory.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(mockHistory[index]['title']),
-                  subtitle: Text(mockHistory[index]['event_date_utc']),
-                );
-              },
-            ),
-          )
-          // ) : MaterialButton(
-          //   onPressed: () => fetchData,
-          //   height: 50,
-          //   shape: const RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.all(Radius.circular(10))
-          //   ),
-          //   color: Colors.black,
-          //   minWidth: MediaQuery.of(context).size.width * 0.8,
-          //   child: Text(
-          //     'Fetch History',
-          //     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-          //         color: Colors.white
-          //     ),
-          //   ),
-          // )
+        child: _isLoading ?
+        const CircularProgressIndicator() :  Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.builder(
+            itemCount: mockHistory.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(mockHistory[index]['title']),
+                subtitle: Text('${DateTime.parse(mockHistory[index]['event_date_utc'])}'),
+              );
+            },
+          ),
         ),
       ),
     );

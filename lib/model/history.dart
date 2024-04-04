@@ -11,7 +11,7 @@ class History {
       id: json['id'],
       title: json['title'],
       details: json['details'],
-      eventDateUtc: json['event_date_utc']
+      eventDateUtc: DateTime.parse(json['event_date_utc'])
     );
   }
 }
