@@ -1,8 +1,11 @@
 
+import 'dart:convert';
+
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:spacex_api/model/history.dart';
 
 class SpaceXService {
-  static void fetchData() async {
+  static Future<History> fetchData() async {
     // setState(() {
     // _loading = true
     // })
@@ -36,5 +39,7 @@ class SpaceXService {
         )
       ),
     );
+    final json = jsonDecode(qResult.data);
+    return History.fromJson(json);
   }
 }
