@@ -39,7 +39,7 @@ class SpaceXService {
         )
       ),
     );
-    final json = jsonDecode(qResult.data);
+    final json = jsonDecode(qResult.data!['histories']);
     return History.fromJson(json);
   }
 }
