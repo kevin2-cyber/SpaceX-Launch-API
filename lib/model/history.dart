@@ -1,5 +1,5 @@
 class History {
-  int id;
+  String id;
   String title;
   String details;
   DateTime eventDateUtc;
