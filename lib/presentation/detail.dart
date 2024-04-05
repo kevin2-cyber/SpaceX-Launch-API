@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spacex_api/model/history.dart';
+import 'package:spacex_api/presentation/about.dart';
 
 class Detail extends StatefulWidget {
   final History history;
@@ -28,6 +29,12 @@ class _DetailState extends State<Detail> {
                 widget.history.details,
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => About()));
+                },
+                  child: const Text('About Us'),
+              )
             ],
           ),
         ),

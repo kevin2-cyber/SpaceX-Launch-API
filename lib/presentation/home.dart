@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:spacex_api/core/constants.dart';
 import 'package:spacex_api/model/history.dart';
 import 'package:spacex_api/presentation/detail.dart';
 
