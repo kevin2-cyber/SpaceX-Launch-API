@@ -21,6 +21,7 @@ class AppConstants {
     History(id: "4", title: 'title', details: 'details', eventDateUtc: DateTime.now()),
   ];
 
+  // history
   static const historyQuery = """
       query SpaceX() {
               histories() {
@@ -31,4 +32,9 @@ class AppConstants {
               }
             }
   """;
+
+
+  // images
+  static const elon = 'assets/images/elon.jpeg';
+  static const gwynne = 'assets/images/gwynne.jpeg';
 }
