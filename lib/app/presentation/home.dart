@@ -52,21 +52,79 @@ class _HomeScreenState extends State<HomeScreen> {
               .map((historyJson) => History.fromJson(historyJson))
               .toList();
 
-          return ListView.builder(
-            itemCount: histories.length,
-            itemBuilder: (context, index) {
-              final history = histories[index];
-              return Card.outlined(
-                child: ListTile(
-                  title: Text(history.title),
-                  subtitle: Text(history.eventDateUtc.toString()),
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Detail(history: history))),
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
                 ),
-              );
-            },
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: TextField(
+                    onChanged: onSearchTextChanged,
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                    decoration: InputDecoration(
+                      contentPadding:
+                      const EdgeInsets.symmetric(vertical: 12),
+                      hintText: "Search Histories...",
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        color: Colors.grey,
+                      ),
+                      // fillColor: Colors.grey.shade800,
+                      filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide:
+                        const BorderSide(color: Colors.transparent),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide:
+                        const BorderSide(color: Colors.transparent),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20))),
+                  child: ListView.builder(
+                    itemCount: histories.length,
+                    itemBuilder: (context, index) {
+                      final history = histories[index];
+                      return Card.outlined(
+                        child: ListTile(
+                          title: Text(history.title),
+                          subtitle: Text(history.eventDateUtc.toString()),
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Detail(history: history))),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),
     );
+  }
+
+  void onSearchTextChanged(String searchText) {
+    setState(() {
+      histories.where((history) =>
+      history.title.toLowerCase().contains(searchText.toLowerCase()) ||
+          history.eventDateUtc.toString().toLowerCase().contains(searchText.toLowerCase()))
+          .toList();
+    });
   }
 }

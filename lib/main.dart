@@ -14,5 +14,5 @@ Future<void> main() async {
 
   await initHiveForFlutter();
 
-  runApp(SpaceX());
+  runApp(const SpaceX());
 }

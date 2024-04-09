@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:spacex_api/core/constants.dart';
 
 class About extends StatefulWidget {
   const About({super.key});
@@ -40,15 +41,33 @@ class _AboutState extends State<About> {
           final company = result.data!['company'];
 
           return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(company['ceo']),
-                Text(company['coo']),
-                Text(company['cto']),
-                Text(company['employees'].toString()),
-                Text(company['name']),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppConstants.elon,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    fit: BoxFit.fill,
+                  ),
+                  Text(company['ceo']),
+                  Image.asset(
+                    AppConstants.gwynne,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    fit: BoxFit.fill,
+                  ),
+                  Text(company['coo']),
+                  Image.asset(
+                    AppConstants.elon,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    fit: BoxFit.fill,
+                  ),
+                  Text(company['cto']),
+                  Text(company['employees'].toString()),
+                  Text(company['name']),
+                ],
+              ),
             ),
           );
         },
