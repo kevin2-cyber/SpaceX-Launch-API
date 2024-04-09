@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:spacex_api/app/presentation/detail.dart';
 import 'package:spacex_api/core/constants.dart';
 
-import '../../model/history.dart';
+import '../../model/model.dart';
 import 'about.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<History> histories = [];
+  List<Ship> ships = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Query(
         options: QueryOptions(
-          document: gql(AppConstants.historyQuery),
+          document: gql(AppConstants.shipQuery)
         ),
         builder: (QueryResult result,
             {VoidCallback? refetch, FetchMore? fetchMore}) {
@@ -48,8 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
           }
 
           // parse response into a list of history objects
-          histories = (result.data!['histories'] as List)
-              .map((historyJson) => History.fromJson(historyJson))
+          ships = (result.data!['ships'] as List)
+              .map((shipJson) => Ship.fromJson(shipJson))
               .toList();
 
           return SingleChildScrollView(
@@ -66,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: InputDecoration(
                       contentPadding:
                       const EdgeInsets.symmetric(vertical: 12),
-                      hintText: "Search Histories...",
+                      hintText: "Search Ships...",
                       hintStyle: const TextStyle(color: Colors.grey),
                       prefixIcon: const Icon(
                         Icons.search,
@@ -100,12 +101,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView.builder(
                     itemCount: histories.length,
                     itemBuilder: (context, index) {
-                      final history = histories[index];
+                      final ship = ships[index];
                       return Card.outlined(
                         child: ListTile(
-                          title: Text(history.title),
-                          subtitle: Text(history.eventDateUtc.toString()),
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Detail(history: history))),
+                          title: Text(ship.name),
+                          subtitle: Text(ship.type),
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Detail(ship: ship))),
                         ),
                       );
                     },
@@ -121,9 +122,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void onSearchTextChanged(String searchText) {
     setState(() {
-      histories.where((history) =>
-      history.title.toLowerCase().contains(searchText.toLowerCase()) ||
-          history.eventDateUtc.toString().toLowerCase().contains(searchText.toLowerCase()))
+      ships.where((ship) =>
+      ship.name.toLowerCase().contains(searchText.toLowerCase()) ||
+          ship.type.toLowerCase().contains(searchText.toLowerCase()))
           .toList();
     });
   }

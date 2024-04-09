@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:spacex_api/model/history.dart';
-
-import 'about.dart';
+import 'package:spacex_api/model/model.dart';
 
 class Detail extends StatefulWidget {
-  final History history;
-  const Detail({super.key, required this.history});
+  // final History history;
+  final Ship ship;
+  const Detail({super.key, required this.ship});
 
   @override
   State<Detail> createState() => _DetailState();
@@ -17,7 +16,7 @@ class _DetailState extends State<Detail> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.history.title,
+          widget.ship.name,
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
@@ -27,7 +26,7 @@ class _DetailState extends State<Detail> {
           child: Column(
             children: [
               Text(
-                widget.history.details,
+                widget.ship.type,
                 style: Theme.of(context).textTheme.bodyLarge,
               )
             ],

@@ -1,5 +1,5 @@
 
-import 'package:spacex_api/model/history.dart';
+import 'package:spacex_api/model/model.dart';
 
 class AppConstants {
   // font
@@ -33,6 +33,18 @@ class AppConstants {
             }
   """;
 
+  // ships
+  static const shipQuery = """
+      query SpaceX() {
+         ships {
+          id
+          name
+          image
+          home_port
+          type
+        }
+      }
+  """;
 
   // images
   static const elon = 'assets/images/elon.jpeg';
